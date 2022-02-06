@@ -8,6 +8,6 @@ class FileController extends Controller
 {
     public function create()
     {
-        return view('files.create');
+        return view('file.create');
     }
 }
