@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('file/create',[FileController::class, 'create'])->name('file.create');
+Route::post('file',[FileController::class, 'new'])->name('file.new');

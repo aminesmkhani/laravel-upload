@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="card-body p-0 pb-2">
-                    <form action="# " method="post" enctype="multipart/form-data">
+                    <form action="{{route('file.new')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <div class="mb-3 m-4">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <div class="mb-3 m-4">
-                                <lable class="col-form-label" for="is-private">فایل خود را انتخاب کنید</lable>
+                                <lable class="col-form-label" for="is-private">به صورت خصوصی آپلود شود!</lable>
                                 <input type="checkbox" name="is-private" class="input-group" id="is-private">
                             </div>
                         </div>
