@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Uploader\Uploader;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
+
+    /**
+     * @var Uploader
+     */
+    private $uploader;
+
+    public function __construct(Uploader $uploader)
+    {
+        $this->uploader = $uploader;
+    }
+
     public function create()
     {
         return view('file.create');
@@ -15,7 +27,8 @@ class FileController extends Controller
     public function new(Request $request)
     {
         $this->validateFile($request);
-        dd($request->file);
+        $this->uploader->upload();
+        return redirect()->back()->withSuccess('File has Uploaded successfully');
     }
 
 
