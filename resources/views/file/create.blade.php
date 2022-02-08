@@ -30,7 +30,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form action="{{route('file.new')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
@@ -42,15 +43,27 @@
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox"name="is-private" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="is-private" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Is Private</label>
                                 </div>
+                                <br>
+                                @if ($errors->any())
+
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Upload</button>
                             </div>
+
                         </form>
                     </div>
                 </div>
