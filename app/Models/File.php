@@ -10,6 +10,10 @@ class File extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name' , 'size', 'time', 'type', 'is_private'
+    ];
+
     public function isMedia()
     {
         return $this->type == 'video';
