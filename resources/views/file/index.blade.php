@@ -20,6 +20,7 @@
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-md-12">
+                    @include('partials.alert')
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Upload File List!</h3>
@@ -62,7 +63,7 @@
                                             <a href="{{route('file.show', $file->id)}}" title="Download"  class="btn btn-info">
                                                 <i class="fas fa-download"></i>
                                             </a>
-                                            <a href="#" title="Delete"  class="btn btn-danger">
+                                            <a href="{{route('file.delete', $file->id)}}" title="Delete"  class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>

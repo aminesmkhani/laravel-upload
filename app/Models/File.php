@@ -28,4 +28,10 @@ class File extends Model
     {
         return resolve(StorageManager::class)->getFile($this->name, $this->type, $this->is_private);
     }
+
+    public function delete()
+    {
+        resolve(StorageManager::class)->deleteFile($this->name, $this->type, $this->is_private);
+        parent::delete();
+    }
 }

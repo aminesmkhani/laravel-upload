@@ -35,6 +35,12 @@ class FileController extends Controller
         return view('file.create');
     }
 
+    public function delete(File $file)
+    {
+        $file->delete();
+        return redirect()->back()->withSuccess('File Delete has Successfully!');
+    }
+
 
     public function new(Request $request)
     {
