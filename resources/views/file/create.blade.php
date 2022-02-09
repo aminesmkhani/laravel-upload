@@ -23,6 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
+                    @include('partials.alert')
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
