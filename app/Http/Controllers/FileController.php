@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Services\Uploader\Uploader;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,12 @@ class FileController extends Controller
     public function __construct(Uploader $uploader)
     {
         $this->uploader = $uploader;
+    }
+
+    public function index()
+    {
+        $files = File::all();
+        return view('file.index',compact('files'));
     }
 
     public function create()
