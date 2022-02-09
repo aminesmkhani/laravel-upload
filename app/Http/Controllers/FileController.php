@@ -26,9 +26,13 @@ class FileController extends Controller
 
     public function new(Request $request)
     {
-        $this->validateFile($request);
-        $this->uploader->upload();
-        return redirect()->back()->withSuccess('File has Uploaded successfully');
+        try {
+            $this->validateFile($request);
+            $this->uploader->upload();
+            return redirect()->back()->withSuccess('File has Uploaded successfully');
+        }catch (\Exception $e){
+            return redirect()->back()->withError('file already uploaded');
+        }
     }
 
 

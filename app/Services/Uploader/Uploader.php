@@ -2,6 +2,7 @@
 
 namespace App\Services\Uploader;
 
+use App\Exceptions\FileHasExistsException;
 use App\Models\File;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,7 @@ class Uploader
 
     public function upload ()
     {
+       if ($this->isFileExists()) throw new FileHasExistsException('File has already upload');
         $this->putFileIntoStorage();
         return $this->saveFileIntoDatabase();
     }
@@ -72,5 +74,10 @@ class Uploader
             'application/zip' => 'archive',
             'application/x-zip-compressed' =>'archive'
         ][$this->file->getClientMimeType()];
+    }
+
+    public function isFileExists()
+    {
+      return  $this->storageManager->isFileExists($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate());
     }
 }
