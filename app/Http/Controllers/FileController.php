@@ -25,6 +25,11 @@ class FileController extends Controller
         return view('file.index',compact('files'));
     }
 
+    public function show(File $file)
+    {
+        return $file->download();
+    }
+
     public function create()
     {
         return view('file.create');

@@ -23,4 +23,9 @@ class File extends Model
     {
         return resolve(StorageManager::class)->getAbsolutePathOf($this->name,$this->type, $this->is_private);
     }
+
+    public function download()
+    {
+        return resolve(StorageManager::class)->getFile($this->name, $this->type, $this->is_private);
+    }
 }

@@ -59,7 +59,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" title="Download"  class="btn btn-info">
+                                            <a href="{{route('file.show', $file->id)}}" title="Download"  class="btn btn-info">
                                                 <i class="fas fa-download"></i>
                                             </a>
                                             <a href="#" title="Delete"  class="btn btn-danger">
