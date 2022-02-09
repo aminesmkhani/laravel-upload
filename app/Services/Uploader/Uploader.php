@@ -16,23 +16,34 @@ class Uploader
     private $storageManager;
 
     private $file;
+    /**
+     * @var FFMpegService
+     */
+    private $ffmpeg;
 
-    public function __construct(Request $request, StorageManager $storageManager)
+    public function __construct(Request $request, StorageManager $storageManager, FFMpegService $ffmpeg)
     {
         $this->request = $request;
         $this->storageManager = $storageManager;
         $this->file = $request->file;
+        $this->ffmpeg = $ffmpeg;
     }
 
     public function upload ()
     {
         $this->putFileIntoStorage();
+        dd($this->ffmpeg->durationOf($this->storageManager->getAbsolutePathOf($this->file->getClientOriginalName(), $this->getType(),$this->isPrivate())));
     }
 
     private function putFileIntoStorage()
     {
-        $method = $this->request->has('is-private') ? 'putFilesAsPrivate' : 'putFilesAsPublic';
+        $method = $this->isPrivate() ? 'putFilesAsPrivate' : 'putFilesAsPublic';
         $this->storageManager->$method($this->file->getClientOriginalName(),$this->file,$this->getType());
+    }
+
+    private function isPrivate()
+    {
+        return $this->request->has('is-private');
     }
 
     private function getType(){

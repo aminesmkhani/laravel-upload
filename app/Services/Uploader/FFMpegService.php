@@ -14,4 +14,9 @@ class FFMpegService
             'ffprobe.binaries'  => config('services.ffmpeg.ffprobe_path')
         ]);
     }
+
+    public function durationOf(string $path)
+    {
+        return $this->ffprobe->format($path)->get('duration');
+    }
 }
